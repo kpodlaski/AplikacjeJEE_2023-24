@@ -57,15 +57,18 @@ public class Robot implements Runnable{
     }
 
     private void paint() {
-        if (collision){
-            System.out.println("Robot "+id+" p=["+x+","+y+"]");
-            System.out.println("Robot "+id+" v=["+vx+","+vy+"]");
-            try {
-                Thread.sleep(250);
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            }
-        }
+        return;
+        //Zakomentowano aby przyspieszyć działanie kodu
+        //co pozwala na szybsze wykrycie błędów wielowątkowych
+//        if (collision){
+//            System.out.println("Robot "+id+" p=["+x+","+y+"]");
+//            System.out.println("Robot "+id+" v=["+vx+","+vy+"]");
+//            try {
+//                Thread.sleep(250);
+//            } catch (InterruptedException e) {
+//                e.printStackTrace();
+//            }
+//        }
     }
 
     private void move() {
@@ -75,6 +78,10 @@ public class Robot implements Runnable{
             rWorld.map[x+vx][y+vy]+=1;
             x+=vx;
             y+=vy;
+        }
+        if (rWorld.map[x][y]!=1){
+            System.out.println("error map["+x+","+y+"]="+rWorld.map[x][y]);
+            System.exit(11);
         }
 
     }

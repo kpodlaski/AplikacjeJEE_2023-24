@@ -1,4 +1,5 @@
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Random;
 
@@ -14,6 +15,7 @@ public class RobotWorld {
     }
 
     public void initWorld(int robotcount){
+        startRobotWorldTester();
         for (int i=0;i<robotcount; i++){
             int x,y;
             do {
@@ -27,14 +29,46 @@ public class RobotWorld {
                                 y,
                                 rand.nextInt(5)-2,
                                 rand.nextInt(5)-2);
-            r.start();
             robots.add(r);
+        }
+        for (Robot r : robots){
+            r.start();
+        }
+        System.out.println("Robots Started");
+    }
+
+    private void startRobotWorldTester() {
+        RobotWorldTester rTester = new RobotWorldTester();
+        rTester.start();
+    }
+
+
+    class RobotWorldTester implements Runnable{
+        public void start(){
+            Thread t = new Thread(this);
+            t.start();
+            System.out.println("Tester Started");
+        }
+        @Override
+        public void run() {
+            while(true){
+                int v;
+                for (int x=0; x<xmax;x++){
+                    for (int y=0; y>ymax; y++){
+                        v = map[x][y];
+                        if (v<0 || v>1){
+                            System.out.println("map["+x+","+y+"]="+v);
+                            System.exit(11);
+                        }
+                    }
+                }
+            }
         }
     }
 
     public static void main(String[] args) {
         RobotWorld rWorld = new RobotWorld();
-        rWorld.initWorld(3);
+        rWorld.initWorld(1500);
 //        Robot r1 = new Robot(rWorld, 12,3,1,-2);
 //        Robot r2 = new Robot(rWorld,32,31,-1,-1);
 //        Robot r3 = new Robot(rWorld,22,13,1,-1);
