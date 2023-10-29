@@ -8,6 +8,7 @@ import java.sql.Statement;
 import java.util.List;
 
 import db.applogic.Person;
+import db.applogic.Position;
 import db.applogic.dao.DAO;
 import db.applogic.dao.PersonDAO;
 import jakarta.servlet.http.*;
@@ -47,7 +48,15 @@ public class HelloServlet extends HttpServlet {
             out.println(p.getName()+" "+p.getSurname());
             out.println("<br/>");
         }
-
+        //TEST DAO Position operations
+        Position p = new Position(0,"Senior Developer");
+        p = dao.insertPosition(p,null);
+        out.println("<br/> insert: new id "+p.getId()+" nazwa="+p.getName());
+        p.setName("Junior Developer");
+        p = dao.updatePosition(p,null);
+        out.println("<br/> update: new id "+p.getId()+" nazwa="+p.getName());
+        int i = dao.deletePosition(p,null);
+        out.println("<br/> delete: number of rows: "+i);
         }
         catch (Exception e){
             out.println(e);

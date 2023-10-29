@@ -40,4 +40,53 @@ public class DAO {
     public Position getPositionById(int id, Connection conn) {
         return positionDAO.getPositionById(id, conn);
     }
+
+    public List<Position> getPositionsByName(String Name, Connection conn) {
+        return positionDAO.getPositionsByNazwa(Name, conn);
+    }
+
+    public Position insertPosition(Position position, Connection conn) {
+        return positionDAO.insertPosition(position, conn);
+    }
+
+    public Position updatePosition(Position position, Connection conn) {
+        return positionDAO.updatePosition(position, conn);
+    }
+
+    public int deletePosition(Position position, Connection conn) {
+        return positionDAO.deletePosition(position, conn);
+    }
+
+    public Position insertOrUpdatePosition(Position position, Connection conn) {
+        return positionDAO.insertOrUpdatePosition(position, conn);
+    }
+
+    public List<Person> getPersonsByName(String name, Connection conn) {
+        return personDAO.getPersonsByName(name, conn);
+    }
+
+    public List<Person> getPersonsBySurname(String surname, Connection conn) {
+        return personDAO.getPersonsBySurname(surname, conn);
+    }
+
+    public List<Person> getPersonsByPosition(Position position, Connection conn) {
+        return personDAO.getPersonsByPosition(position, conn);
+    }
+
+    public List<Person> getPersonsByNameAndSurname(String name, String surname, Connection conn) {
+        return personDAO.getPersonsByNameAndSurname(name, surname, conn);
+    }
+
+    public Person updatePerson(Person p, Connection conn) {
+        return personDAO.updatePerson(p, conn);
+    }
+
+    public Person insertPerson(Person p, Connection conn) {
+        return personDAO.insertPerson(p, conn);
+    }
+
+    public int deletePerson(Person person, Connection conn) {
+        return personDAO.deletePerson(person, conn);
+    }
+
 }
