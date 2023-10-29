@@ -28,6 +28,7 @@ public class Captcha extends HttpServlet {
             String word = generateNewWord();
             session.setAttribute("word",word);
             out.println(word);
+            out.println("<image ");
             out.println("<form method=\"GET\" ><input id=\"value\" name=\"value\" >" +
                     "<input type=\"submit\"> </form> ");
         }
