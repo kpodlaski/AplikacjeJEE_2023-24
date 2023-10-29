@@ -1,7 +1,15 @@
 package com.example.demo2;
 
 import java.io.*;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.ResultSet;
+import java.sql.Statement;
+import java.util.List;
 
+import db.applogic.Person;
+import db.applogic.dao.DAO;
+import db.applogic.dao.PersonDAO;
 import jakarta.servlet.http.*;
 import jakarta.servlet.annotation.*;
 
@@ -20,6 +28,32 @@ public class HelloServlet extends HttpServlet {
         PrintWriter out = response.getWriter();
         out.println("<html><body>");
         out.println("<h1>" + message + "</h1>");
+        try{
+        Class.forName("org.postgresql.Driver");
+        String connString= "jdbc:postgresql://172.17.0.2:5432/postgres?user=postgres";
+        Connection conn = DriverManager.getConnection(connString);
+        Statement stm = conn.createStatement();
+        stm.execute("Select * from Jednostka");
+        //stm.execute("Select * FROM pg_catalog.pg_tables");
+        ResultSet rs = stm.getResultSet();
+        while(rs.next()){
+            out.println(rs.getString("nazwa"));
+        }
+        rs.close();stm.close();conn.close();
+
+        DAO dao = new DAO();
+        List<Person> persons = dao.getAllPersons(null);
+        for (Person p : persons){
+            out.println(p.getName()+" "+p.getSurname());
+            out.println("<br/>");
+        }
+
+        }
+        catch (Exception e){
+            out.println(e);
+        }
+
+
         out.println("</body></html>");
     }
 

@@ -1,5 +1,11 @@
 package applogic;
 
+import applogic.Position;
+
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.ResultSet;
+import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -10,14 +16,14 @@ public class Company {
     public Company(){
         name = "Firma Krzak abc";
         Department d = new Department(1,"Księgowość");
-        Position p = new Position(1,"Główna Księgowa",d);
+        applogic.Position p = new applogic.Position(1,"Główna Księgowa",d);
         Person person = new Person(1,"Alicja","Alicewska", p);
         getPersonel().add(person);
-        p = new Position(2,"ksiegowy",d);
+        p = new applogic.Position(2,"ksiegowy",d);
         person = new Person(2,"Tomasz","Tomaszewski", p);
         getPersonel().add(person);
         d = new Department(2,"IT");
-        p = new Position(3,"Administartor Systemów IT",d);
+        p = new applogic.Position(3,"Administartor Systemów IT",d);
         person = new Person(3,"Anna","Annewska",p);
         getPersonel().add(person);
 
@@ -83,4 +89,6 @@ public class Company {
         }
         return result;
     }
+
+
 }
