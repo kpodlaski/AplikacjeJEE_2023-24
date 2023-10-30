@@ -1,5 +1,6 @@
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <jsp:useBean id="dom" class="com.example.demo.House" scope="request" ></jsp:useBean>
+<jsp:useBean id="company" class="applogic.model.Company" scope="application"/>
 <%@ taglib uri = "http://java.sun.com/jsp/jstl/core" prefix = "c" %>
 <!DOCTYPE html>
 <html>
@@ -24,5 +25,12 @@ ${dom.address = "pomorska 15"}
 Item <c:out value = "${i} ${dom.address}"/><p>
     </c:forEach>
     <br/>
+
+<c:forEach var="dep" items="${company.departments}">
+    <h2>${dep.name}</h2> <br/>
+    <c:forEach var="per" items="${dep.personel}">
+        <h3> ${per.name} ${per.surname} ${per.position.name}</h3>
+    </c:forEach>
+</c:forEach>
 </body>
 </html>

@@ -13,7 +13,7 @@ public class Company {
     public Company(){
         Position pos = new Position("Kierownik");
         Person p = new Person("Anna","Annewska", pos);
-        Department dep = new Department("Markating");
+        Department dep = new Department("Marketing");
         dep.addPerson(p);
         pos = new Position("Specjalista");
         p = new Person("Tomasz","Tomaszewski", pos);
