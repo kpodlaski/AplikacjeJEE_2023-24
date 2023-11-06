@@ -4,11 +4,24 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Department {
+    private int id = -1;
     private String name;
     private List<Person> personel = new ArrayList<>();
 
+    public Department(int id, String name ){
+        this(name);
+        this.id = id;
+    }
     public Department(String name) {
         this.name = name;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 
     public void addPerson(Person p){

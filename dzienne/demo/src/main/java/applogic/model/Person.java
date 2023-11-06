@@ -1,14 +1,28 @@
 package applogic.model;
 
 public class Person {
+    private int id = -1;
     private String name;
     private String surname;
     private Position position;
+
+    public Person (int id, String name, String surname, Position position){
+        this(name,surname,position);
+        this.id = id;
+    }
 
     public Person(String name, String surname, Position position) {
         this.name = name;
         this.surname = surname;
         this.position = position;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 
     public String getName() {
