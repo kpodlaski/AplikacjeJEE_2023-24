@@ -6,7 +6,7 @@ import applogic.model.Person;
 import java.util.List;
 
 public interface DepartmentDAO {
-    Department getDepartmetById(int id);
+    Department getDepartmentById(int id);
     List<Department> getDepartmentByName(String name);
     List<Department> getDepartmentByPerson(Person person);
     boolean updateDepartment(Department dep);

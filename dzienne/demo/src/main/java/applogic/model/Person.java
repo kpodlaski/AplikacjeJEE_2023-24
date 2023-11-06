@@ -48,4 +48,8 @@ public class Person {
     public void setPosition(Position position) {
         this.position = position;
     }
+
+    public String toString(){
+        return String.format("[%1$d] %2$s %3$s, stanowisko: %4$s",id, name, surname, position);
+    }
 }

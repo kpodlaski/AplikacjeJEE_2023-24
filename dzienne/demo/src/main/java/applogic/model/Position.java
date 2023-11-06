@@ -27,4 +27,8 @@ public class Position {
     public void setName(String name) {
         this.name = name;
     }
+
+    public String toString(){
+        return String.format("[%1$d] %2$s",id, name);
+    }
 }

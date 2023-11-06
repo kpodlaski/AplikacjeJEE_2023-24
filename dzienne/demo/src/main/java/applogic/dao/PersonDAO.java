@@ -3,6 +3,7 @@ package applogic.dao;
 import applogic.model.Person;
 import applogic.model.Position;
 
+import java.sql.Connection;
 import java.util.List;
 
 public interface PersonDAO {
