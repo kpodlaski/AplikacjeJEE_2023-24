@@ -4,7 +4,7 @@ import applogic.model.Position;
 
 import java.util.List;
 
-public class PositionDAO implements applogic.dao.PositionDAO {
+public class PositionDAOImpl implements applogic.dao.PositionDAO {
     @Override
     public Position getPositionById(int id){
         return null;
