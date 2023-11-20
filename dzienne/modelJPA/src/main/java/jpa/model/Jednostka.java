@@ -6,7 +6,7 @@ import java.util.List;
 
 @Entity
 public class Jednostka {
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    //@GeneratedValue(strategy = GenerationType.IDENTITY)
     @Id
     @Column(name = "id")
     private int id;
