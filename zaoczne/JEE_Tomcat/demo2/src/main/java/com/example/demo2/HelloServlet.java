@@ -11,6 +11,9 @@ import db.applogic.Person;
 import db.applogic.Position;
 import db.applogic.dao.DAO;
 import db.applogic.dao.PersonDAO;
+import jakarta.persistence.EntityManager;
+import jakarta.persistence.EntityManagerFactory;
+import jakarta.persistence.Persistence;
 import jakarta.servlet.http.*;
 import jakarta.servlet.annotation.*;
 
@@ -61,8 +64,12 @@ public class HelloServlet extends HttpServlet {
         catch (Exception e){
             out.println(e);
         }
-
-
+        //Test JPA
+        EntityManagerFactory emf = Persistence.createEntityManagerFactory("default");
+        EntityManager em = emf.createEntityManager();
+        Position res = em.find(Position.class,2);
+        out.println("<br/> z JPA <br/>");
+        out.println(res.getName()+" "+res.getId());
         out.println("</body></html>");
     }
 

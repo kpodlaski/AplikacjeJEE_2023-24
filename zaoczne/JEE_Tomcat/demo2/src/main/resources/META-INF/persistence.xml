@@ -5,5 +5,15 @@
              version="3.0">
     <persistence-unit name="default">
 
+        <class>db.applogic.Person</class>
+        <class>db.applogic.Position</class>
+        <class>db.applogic.Department</class>
+        <properties>
+            <property name="hibernate.connection.url" value="jdbc:postgresql://172.17.0.2:5432/postgres"/>
+            <property name="hibernate.connection.driver_class" value="org.postgresql.Driver"/>
+            <property name="hibernate.connection.username" value="postgres"/>
+            <property name = "hibernate.show_sql" value = "false" />
+
+        </properties>
     </persistence-unit>
 </persistence>
