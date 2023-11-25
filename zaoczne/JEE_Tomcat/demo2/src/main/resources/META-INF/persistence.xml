@@ -16,4 +16,18 @@
 
         </properties>
     </persistence-unit>
+
+    <persistence-unit name="localhost">
+
+        <class>db.applogic.Person</class>
+        <class>db.applogic.Position</class>
+        <class>db.applogic.Department</class>
+        <properties>
+            <property name="hibernate.connection.url" value="jdbc:postgresql://localhost:32768/postgres"/>
+            <property name="hibernate.connection.driver_class" value="org.postgresql.Driver"/>
+            <property name="hibernate.connection.username" value="postgres"/>
+            <property name = "hibernate.show_sql" value = "false" />
+
+        </properties>
+    </persistence-unit>
 </persistence>

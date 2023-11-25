@@ -71,6 +71,8 @@ public class HelloServlet extends HttpServlet {
         out.println("<br/> z JPA <br/>");
         out.println(res.getName()+" "+res.getId());
         out.println("</body></html>");
+        em.close();
+        emf.close();
     }
 
     public void destroy() {

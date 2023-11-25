@@ -1,5 +1,10 @@
 package com.example.demo2;
 
+import db.applogic.Position;
+import jakarta.persistence.EntityManager;
+import jakarta.persistence.EntityManagerFactory;
+import jakarta.persistence.Persistence;
+
 import java.sql.*;
 
 public class DBTest {
@@ -19,5 +24,13 @@ public class DBTest {
         rs.close();
         stm.close();
         conn.close();
+
+        EntityManagerFactory emf = Persistence.createEntityManagerFactory("localhost");
+        EntityManager em = emf.createEntityManager();
+        Position res = em.find(Position.class,2);
+        System.out.println(res.getName()+" "+res.getId());
+        em.close();
+        emf.close();
+
     }
 }
