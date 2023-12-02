@@ -6,6 +6,10 @@
 </head>
 <body>
 
-<p th:text="${cust.firstName}" />
+<table>
+<tr th:each="cust : ${customers}">
+  <td th:text="${cust.firstName}"></td>
+</tr>
+</table>
 </body>
 </html>
