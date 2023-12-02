@@ -13,7 +13,7 @@ public class ConnetcionAndExceptionHandlingWrapper {
     Connection con;
     List<PreparedStatement> pstms = new ArrayList<>();
     boolean newConnection = false;
-    public Connection startTry(DAOImpl dao, Connection connection, String connectionString) throws SQLException {
+    public Connection startTry(DAOImpl dao, Connection connection) throws SQLException {
         if (connection == null){
             con = dao.createNewConnecton();
             newConnection = true;

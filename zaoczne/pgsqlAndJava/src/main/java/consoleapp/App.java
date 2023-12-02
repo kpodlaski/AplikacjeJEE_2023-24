@@ -31,5 +31,16 @@ public class App {
         for (Pracownik p : (List<Pracownik>) nq.getResultList()){
             System.out.println(p.getImie()+" "+p.getNazwisko() );
         }
+        Stanowisko st = new Stanowisko();
+        st.setId(13);
+        st.setNazwa("Starszy programista");
+        em.getTransaction().begin();
+        // Insert new element
+        // em.persist(st);
+        // Insert or Update element
+        //em.merge(st);
+        res = em.find(Stanowisko.class,33);
+        if (res != null) em.remove(res);
+        em.getTransaction().commit();
     }
 }

@@ -6,7 +6,7 @@ import java.util.Collection;
 
 @Entity
 public class Stanowisko {
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    //@GeneratedValue(strategy = GenerationType.AUTO)
     @Id
     @Column(name = "id")
     private int id;

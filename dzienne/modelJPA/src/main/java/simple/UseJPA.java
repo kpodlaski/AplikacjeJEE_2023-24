@@ -29,15 +29,14 @@ public class UseJPA {
             Stanowisko st = (Stanowisko) o;
             System.out.println(st.getNazwa());
         }
-        Stanowisko s1 = new Stanowisko();
-        s1.setId(11);
-        s1.setNazwa("inż produkcji");
-        System.out.println(s1.getId()+ " "+s1.getNazwa());
-        em.getTransaction().begin();
-        em.merge(s1);
-        em.getTransaction().commit();
-        //em.flush();
-
+//        Stanowisko s1 = new Stanowisko();
+//        s1.setId(11);
+//        s1.setNazwa("inż produkcji");
+//        System.out.println(s1.getId()+ " "+s1.getNazwa());
+//        em.getTransaction().begin();
+//        em.merge(s1);
+//        em.getTransaction().commit();
         em.close();
+        emf.close();
     }
 }

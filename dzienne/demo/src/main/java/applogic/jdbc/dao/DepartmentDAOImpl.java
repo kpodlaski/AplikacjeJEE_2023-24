@@ -11,11 +11,9 @@ import java.util.List;
 public class DepartmentDAOImpl implements DepartmentDAO {
 
     private final DAO dao;
-    private final String connectionString;
 
-    public DepartmentDAOImpl(DAO dao, String connectionString){
+    public DepartmentDAOImpl(DAO dao){
         this.dao =dao;
-        this.connectionString = connectionString;
     }
 
 
@@ -49,12 +47,12 @@ public class DepartmentDAOImpl implements DepartmentDAO {
     }
 
     @Override
-    public List<Department> getDepartmentByName(String name) {
+    public List<Department> getDepartmentsByName(String name) {
         return getDepartmentByName(null,name);
     }
 
     @Override
-    public List<Department> getDepartmentByPerson(Person person) {
+    public List<Department> getDepartmentsByPerson(Person person) {
         return getDepartmentByPerson(null, person);
     }
 

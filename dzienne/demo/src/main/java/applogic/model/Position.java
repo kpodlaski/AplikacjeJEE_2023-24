@@ -1,9 +1,19 @@
 package applogic.model;
 
+import jakarta.persistence.*;
+
+@Entity
+@Table(name="Stanowisko")
 public class Position {
-    private int id = -1;
+    //@GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Id
+    @Column(name = "id")
+    private int id;
+    @Basic
+    @Column(name = "nazwa")
     private String name;
 
+    public Position(){}
     public Position(int id, String name){
         this(name);
         this.id = id;

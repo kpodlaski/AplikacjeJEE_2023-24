@@ -10,18 +10,16 @@ import java.util.logging.Level;
 
 public class PositionDAOImpl implements applogic.dao.PositionDAO {
     private final DAO dao;
-    private final String connectionString;
 
-    public PositionDAOImpl(DAO dao, String connectionString){
+    public PositionDAOImpl(DAO dao){
         this.dao  = dao;
-        this.connectionString = connectionString;
     }
     public List<Position> getPositionByName(Connection connection, String name) {
         List<Position> positions = new ArrayList<>();
         PreparedStatement pstm = null;
         ConnetcionAndExceptionHandlingWrapper conHandler = new ConnetcionAndExceptionHandlingWrapper();
         try {
-            conHandler.startTry((DAOImpl) dao,connection, connectionString);
+            conHandler.startTry((DAOImpl) dao,connection);
             pstm = conHandler.prepareStatement("Select id as sid, nazwa from Stanowisko where nazwa like ?");
             pstm.setString(1,'%'+name+'%');
             pstm.execute();
@@ -42,7 +40,7 @@ public class PositionDAOImpl implements applogic.dao.PositionDAO {
         ConnetcionAndExceptionHandlingWrapper conHandler = new ConnetcionAndExceptionHandlingWrapper();
         boolean result = false;
         try {
-            conHandler.startTry((DAOImpl) dao, connection, connectionString);
+            conHandler.startTry((DAOImpl) dao, connection);
             PreparedStatement pstm = conHandler.prepareStatement("UPDATE Stanowisko Set nazwa = ? WHERE id=?");
 
             pstm.setString(1, position.getName());
@@ -62,7 +60,7 @@ public class PositionDAOImpl implements applogic.dao.PositionDAO {
         ConnetcionAndExceptionHandlingWrapper conHandler = new ConnetcionAndExceptionHandlingWrapper();
         boolean result = false;
         try {
-            conHandler.startTry((DAOImpl) dao, connection, connectionString);
+            conHandler.startTry((DAOImpl) dao, connection);
             PreparedStatement pstm = conHandler.prepareStatement("Select Max(id) From Stanowisko");
             pstm.execute();
             ResultSet rs = pstm.getResultSet();
@@ -86,7 +84,7 @@ public class PositionDAOImpl implements applogic.dao.PositionDAO {
         ConnetcionAndExceptionHandlingWrapper conHandler = new ConnetcionAndExceptionHandlingWrapper();
         boolean result = false;
         try {
-            conHandler.startTry((DAOImpl) dao, connection, connectionString);
+            conHandler.startTry((DAOImpl) dao, connection);
             PreparedStatement pstm = conHandler.prepareStatement("DELETE FROM Stanowisko WHERE id=?");
             pstm.setInt(1, position.getId());
             result = pstm.execute();
@@ -109,7 +107,7 @@ public class PositionDAOImpl implements applogic.dao.PositionDAO {
         PreparedStatement pstm = null;
         ConnetcionAndExceptionHandlingWrapper conHandler = new ConnetcionAndExceptionHandlingWrapper();
         try {
-            conHandler.startTry((DAOImpl) dao, connection, connectionString);
+            conHandler.startTry((DAOImpl) dao, connection);
             pstm = conHandler.prepareStatement("Select id as sid, nazwa from Stanowisko where id=?");
             pstm.setInt(1, id);
             pstm.execute();
@@ -135,7 +133,7 @@ public class PositionDAOImpl implements applogic.dao.PositionDAO {
     }
 
     @Override
-    public List<Position> getPositionByName(String name) {
+    public List<Position> getPositionsByName(String name) {
         return getPositionByName(null,name);
     }
 

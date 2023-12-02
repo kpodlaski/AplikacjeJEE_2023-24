@@ -19,27 +19,57 @@ public class DAOImpl implements DAO {
             throw new RuntimeException(e);
         }
     }
-    private final String connectionString;
-    private final String user;
-    private final String passwd;
+    private String connectionString;
+    private String user;
+    private String passwd;
     private Logger logger = Logger.getLogger("BazyDanych");
 
     PositionDAOImpl positionDAO;
     PersonDAOImpl personDAO;
     DepartmentDAOImpl departmentDAO;
 
-
-    public DAOImpl(String connectionString, String username, String password) {
-        this.connectionString = connectionString;
+    public DAOImpl(String connectionString, String username, String password){
+        this();
+        this.connectionString=connectionString;
         this.user = username;
-        this.passwd = password;
-        positionDAO = new PositionDAOImpl(this, connectionString);
-        personDAO = new PersonDAOImpl(this, connectionString);
-        departmentDAO = new DepartmentDAOImpl(this, connectionString);
+        this.passwd=password;
+    }
+
+    public DAOImpl() {
+        positionDAO = new PositionDAOImpl(this);
+        personDAO = new PersonDAOImpl(this);
+        departmentDAO = new DepartmentDAOImpl(this);
     }
 
     public Logger getLogger(){
         return logger;
+    }
+    Connection createNewConnecton() throws SQLException {
+        return DriverManager.getConnection(connectionString, user, passwd);
+    }
+
+    public String getConnectionString() {
+        return connectionString;
+    }
+
+    public String getUser() {
+        return user;
+    }
+
+    public void setConnectionString(String connectionString) {
+        this.connectionString = connectionString;
+    }
+
+    public void setUser(String user) {
+        this.user = user;
+    }
+
+    public void setPasswd(String passwd) {
+        this.passwd = passwd;
+    }
+
+    public String getPasswd() {
+        return passwd;
     }
 
     public Position getPositionById(Connection connection, int id){
@@ -52,8 +82,8 @@ public class DAOImpl implements DAO {
     }
 
     @Override
-    public List<Position> getPositionByName(String name) {
-        return positionDAO.getPositionByName(name);
+    public List<Position> getPositionsByName(String name) {
+        return positionDAO.getPositionsByName(name);
     }
 
     @Override
@@ -98,18 +128,27 @@ public class DAOImpl implements DAO {
     }
 
     @Override
-    public List<Person> getPersonByName(String name) {
-        return personDAO.getPersonByName(name);
+    public List<Person> getPersonsByName(String name) {
+        return personDAO.getPersonsByName(name);
     }
 
     @Override
-    public List<Person> getPersonBySurname(String sname) {
-        return personDAO.getPersonBySurname(sname);
+    public List<Person> getPersonsBySurname(String sname) {
+        return personDAO.getPersonsBySurname(sname);
     }
 
     @Override
-    public List<Person> getPersonByPosition(Position position) {
-        return personDAO.getPersonByPosition(position);
+    public List<Person> getPersonsByPosition(Position position) {
+        return personDAO.getPersonsByPosition(position);
+    }
+
+    @Override
+    public List<Person> getPersonsInDepartment(Department department) {
+        return personDAO.getPersonsInDepartment(department);
+    }
+
+    public List<Person> getPersonsInDepartment(Connection connection, Department department) {
+        return personDAO.getPersonsInDepartment(connection, department);
     }
 
     @Override
@@ -147,6 +186,7 @@ public class DAOImpl implements DAO {
     }
 
 
+
     public boolean updatePerson(Connection connection, Person person) {
         return personDAO.updatePerson(connection, person);
     }
@@ -167,13 +207,13 @@ public class DAOImpl implements DAO {
     }
 
     @Override
-    public List<Department> getDepartmentByName(String name) {
-        return departmentDAO.getDepartmentByName(name);
+    public List<Department> getDepartmentsByName(String name) {
+        return departmentDAO.getDepartmentsByName(name);
     }
 
     @Override
-    public List<Department> getDepartmentByPerson(Person person) {
-        return departmentDAO.getDepartmentByPerson(person);
+    public List<Department> getDepartmentsByPerson(Person person) {
+        return departmentDAO.getDepartmentsByPerson(person);
     }
 
     @Override
@@ -220,7 +260,5 @@ public class DAOImpl implements DAO {
         return departmentDAO.insertDepartment(connection, dep);
     }
 
-    Connection createNewConnecton() throws SQLException {
-        return DriverManager.getConnection(connectionString, user, passwd);
-    }
+
 }

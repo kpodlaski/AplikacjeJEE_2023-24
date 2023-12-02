@@ -3,6 +3,7 @@ package applogic.jdbc.dao;
 import applogic.dao.DAO;
 import applogic.dao.PersonDAO;
 import applogic.dao.PositionDAO;
+import applogic.model.Department;
 import applogic.model.Person;
 import applogic.model.Position;
 
@@ -14,11 +15,9 @@ import java.util.List;
 
 public class PersonDAOImpl implements PersonDAO {
     private final DAO dao;
-    private final String connectionString;
 
-    public PersonDAOImpl(DAO dao, String connectionString) {
+    public PersonDAOImpl(DAO dao) {
         this.dao = dao;
-        this.connectionString = connectionString;
     }
 
 
@@ -27,7 +26,7 @@ public class PersonDAOImpl implements PersonDAO {
         PreparedStatement pstm = null;
         ConnetcionAndExceptionHandlingWrapper conHandler = new ConnetcionAndExceptionHandlingWrapper();
         try {
-            conHandler.startTry((DAOImpl) dao, connection, connectionString);
+            conHandler.startTry((DAOImpl) dao, connection);
             pstm = conHandler.prepareStatement("SELECT pracownik.id as pid, imie, nazwisko, stanowisko.id as sid, nazwa FROM Pracownik, Stanowisko WHERE pracownik.id=? AND pracownik.stanowisko=stanowisko.id");
             pstm.setInt(1, id);
             pstm.execute();
@@ -59,6 +58,10 @@ public class PersonDAOImpl implements PersonDAO {
         return null;
     }
 
+    public List<Person> getPersonsInDepartment(Connection connection, Department department) {
+        return null;
+    }
+
     public boolean updatePerson(Connection connection, Person person) {
         return false;
     }
@@ -84,18 +87,23 @@ public class PersonDAOImpl implements PersonDAO {
     }
 
     @Override
-    public List<Person> getPersonByName(String name) {
+    public List<Person> getPersonsByName(String name) {
         return getPersonByName(null,name);
     }
 
     @Override
-    public List<Person> getPersonBySurname(String sname) {
+    public List<Person> getPersonsBySurname(String sname) {
         return getPersonBySurname(null,sname);
     }
 
     @Override
-    public List<Person> getPersonByPosition(Position position) {
+    public List<Person> getPersonsByPosition(Position position) {
         return getPersonByPosition(null,position);
+    }
+
+    @Override
+    public List<Person> getPersonsInDepartment(Department department) {
+        return getPersonsInDepartment(null, department);
     }
 
     @Override

@@ -7,8 +7,8 @@ import java.util.List;
 
 public interface DepartmentDAO {
     Department getDepartmentById(int id);
-    List<Department> getDepartmentByName(String name);
-    List<Department> getDepartmentByPerson(Person person);
+    List<Department> getDepartmentsByName(String name);
+    List<Department> getDepartmentsByPerson(Person person);
     boolean updateDepartment(Department dep);
     boolean deleteDepartment(Department dep);
     Department insertDepartment(Department dep);

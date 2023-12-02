@@ -5,5 +5,32 @@
              version="3.0">
     <persistence-unit name="default">
 
+        <!--<mapping-file>META-INF/mappings.xml</mapping-file>-->
+        <class>applogic.model.Department</class>
+        <class>applogic.model.Person</class>
+        <class>applogic.model.Position</class>
+        <properties>
+            <property name="jakarta.persistence.jdbc.url"
+                      value="jdbc:postgresql://localhost:32768/postgres"/>
+            <property name="jakarta.persistence.jdbc.driver" value="org.postgresql.Driver"/>
+            <property name="jakarta.persistence.jdbc.user" value="postgres"/>
+            <property name="jakarta.persistence.jdbc.password" value="postgres"/>
+            <property name="hibernate.show_sql" value="true"/>
+        </properties>
+    </persistence-unit>
+    <persistence-unit name="docker">
+
+        <!--<mapping-file>META-INF/mappings.xml</mapping-file>-->
+        <class>applogic.model.Department</class>
+        <class>applogic.model.Person</class>
+        <class>applogic.model.Position</class>
+        <properties>
+            <property name="jakarta.persistence.jdbc.url"
+                      value="jdbc:postgresql://172.17.0.2:5432/postgres"/>
+            <property name="jakarta.persistence.jdbc.driver" value="org.postgresql.Driver"/>
+            <property name="jakarta.persistence.jdbc.user" value="postgres"/>
+            <property name="jakarta.persistence.jdbc.password" value="postgres"/>
+            <property name="hibernate.show_sql" value="false"/>
+        </properties>
     </persistence-unit>
 </persistence>
