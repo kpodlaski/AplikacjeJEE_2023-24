@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 @Controller
 public class CustomerController {
@@ -35,16 +36,17 @@ public class CustomerController {
         return "customer_view";
     }
 
-    @GetMapping("/customer/{id}")
-    public String getCustomerById(@PathVariable int id,
-                                  @RequestParam(value = "name", defaultValue = "")
-                                  String name, Model model){
+    @GetMapping(value = {"/customer", "/customer/{id}"})
+    public String getCustomerById(
+            @PathVariable(required = false) Optional<Integer> id,
+            @RequestParam(value = "name", defaultValue = "")
+            String name, Model model){
         List<Customer> customers = new ArrayList<>();
         if (name.length()>1){
             customers = customerRepsitory.findByLastName(name);
         }
         else {
-            Customer customer = customerRepsitory.findById(id);
+            Customer customer = customerRepsitory.findById(id.get());
             customers.add(customer);
         }
 //        List<Customer> customers = (List<Customer>) customerRepsitory.findAll();

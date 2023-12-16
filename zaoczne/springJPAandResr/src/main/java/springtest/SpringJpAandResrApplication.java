@@ -14,6 +14,7 @@ public class SpringJpAandResrApplication {
     private static final Logger log = LoggerFactory.getLogger(SpringJpAandResrApplication.class);
 
     public static void main(String[] args) {
+
         SpringApplication.run(SpringJpAandResrApplication.class, args);
     }
 
