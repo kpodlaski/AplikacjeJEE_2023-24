@@ -27,4 +27,10 @@ public class Stanowisko {
     public void setNazwa(String nazwa) {
         this.nazwa = nazwa;
     }
+
+    public Stanowisko(){}
+
+    public Stanowisko(String nazwa){
+        this.nazwa = nazwa;
+    }
 }
