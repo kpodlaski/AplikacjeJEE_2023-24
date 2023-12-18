@@ -1,0 +1,18 @@
+<!DOCTYPE HTML>
+        <html xmlns:th="http://www.thymeleaf.org">
+        <head>
+        <title>Stanowiska</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+</head>
+<body>
+Mamy <span th:text="${size}"/> stanowisk:
+<table>
+    <tr th:each="st: ${stanowiska}">
+        <td th:text="${st.id}" />
+        <td th:text="${st.nazwa}" />
+    </tr>
+</table>
+</body>
+</html></title>
+</head>
+<body>
