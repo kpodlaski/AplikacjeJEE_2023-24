@@ -21,8 +21,9 @@ public class StanowiskoController {
         stanowiskoRepository.save(st);
         return "ok";
     }
-    @GetMapping(value="/stanowiska", consumes={MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE},
-    produces={MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE})
+    @GetMapping(value="/stanowiska",
+            consumes={MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE},
+            produces={MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE})
     public List<Stanowisko> getAll(Model model){
         return (List<Stanowisko>) stanowiskoRepository.findAll();
     }
@@ -41,7 +42,8 @@ public class StanowiskoController {
         return st;
     }
 
-    @GetMapping(value="/stanowisko", consumes={MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE},
+    @GetMapping(value="/stanowisko",
+            consumes={MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE},
             produces={MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE})
     public List<Stanowisko> findById(@RequestParam String name){
         List<Stanowisko> st = stanowiskoRepository.findByNazwaStartingWith(name);

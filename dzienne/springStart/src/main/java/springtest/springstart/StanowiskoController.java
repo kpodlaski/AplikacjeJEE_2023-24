@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestParam;
 import springtest.springstart.model.Stanowisko;
 
@@ -33,12 +34,19 @@ public class StanowiskoController {
         return "stanowiska";
     }
 
-    @GetMapping("/stanowisko")
-    public String showStanowiska(@RequestParam String nameStart, Model model){
+    @GetMapping(value={"/stanowisko", "/stanowisko/{id}"} )
+    public String showStanowiska(@PathVariable(required = false) Integer id, @RequestParam(required = false) String nameStart, Model model){
+        if (id != null){
+            Stanowisko stanowisko = stanowiskoRepository.findById(id).get();
+            model.addAttribute("stanowisko",stanowisko);
+            return "stanowisko";
+        }
         List<Stanowisko> stanowiska =
                 (List<Stanowisko>) stanowiskoRepository.findStanowiskoByNazwaStartingWith(nameStart);
         model.addAttribute("stanowiska", stanowiska);
         model.addAttribute("size",stanowiska.size());
         return "stanowiska";
     }
+
+
 }
